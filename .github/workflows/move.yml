@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: windows-latest
+  replicate:
+    runs-on: ubuntu-latest
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -19,13 +19,13 @@ jobs:
         run: dir
 
       - name: Show src contents
-        run: type src.txt
+        run: cat src.txt
 
       - name: Update files
-        run: type src.txt > dest.txt
+        run: cp src.txt dest.txt
         
       - name: Show dest contents
-        run: type dest.txt
+        run: cat dest.txt
         
       - name: Push changes
         run: |
