@@ -29,7 +29,8 @@ jobs:
         
       - name: Push changes
         run: |
-          git config --global user.name "kgupta219000"
+          git config --global user.name "Kapil Gupta"
+          git config --global user.email "kgupta219000@gmail.com"
           git add .
           git commit -m "Updating dest.txt"
           git push
