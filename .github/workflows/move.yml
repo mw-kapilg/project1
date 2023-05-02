@@ -14,23 +14,32 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+        with:
+          path: ./temp
+      
+      - uses: actions/checkout@v3
+        with:
+          repository: kguptaDemoOrg/final
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          path: ./final
 
       - name: Run dir
         run: dir
 
       - name: Show src contents
-        run: cat src.txt
+        run: cat ./temp/src.txt
 
       - name: Update files
-        run: cp src.txt dest.txt
+        run: cp ./temp/src.txt ./final/dest.txt
         
       - name: Show dest contents
-        run: cat dest.txt
+        run: cat ./final/dest.txt
         
       - name: Push changes
         run: |
+          cd ./final
           git config --global user.name "Kapil Gupta"
           git config --global user.email "kgupta219000@gmail.com"
           git add .
-          git commit -m "Updating dest.txt"
+          git commit -m "Updated dest.txt"
           git push
