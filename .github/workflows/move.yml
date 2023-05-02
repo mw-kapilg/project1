@@ -15,29 +15,29 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          path: ./temp
+          path: ./project1
       
       - uses: actions/checkout@v3
         with:
-          repository: kguptaDemoOrg/final
+          repository: kguptaDemoOrg/project2
           token: ${{ secrets.GH_TOKEN }}
-          path: ./final
+          path: ./project2
 
       - name: Run dir
         run: dir
 
       - name: Show src contents
-        run: cat ./temp/src.txt
+        run: cat ./project1/src.txt
 
       - name: Update files
-        run: cp ./temp/src.txt ./final/dest.txt
+        run: cp ./project1/src.txt ./project2/dest.txt
         
       - name: Show dest contents
-        run: cat ./final/dest.txt
+        run: cat ./project2/dest.txt
         
       - name: Push changes
         run: |
-          cd ./final
+          cd ./project2
           git config --global user.name "Kapil Gupta"
           git config --global user.email "kgupta219000@gmail.com"
           git add .
