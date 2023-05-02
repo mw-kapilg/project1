@@ -18,8 +18,6 @@ jobs:
       - name: Run a one-line script
         run: |
 	  dir
-	  git status
-	  type src.txt > dest.txt
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
