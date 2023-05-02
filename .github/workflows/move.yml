@@ -8,21 +8,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: windows-latest
+  replicate:
+    runs-on: ubuntu-latest
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: |
-		dir
-		git status
-		type src.txt > dest.txt
+      - name: Run dir
+        run: dir
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Show src contents
+        run: cat src.txt
+
+      - name: Update files
+        run: cp src.txt dest.txt
+        
+      - name: Show dest contents
+        run: cat dest.txt
+        
+      - name: Push changes
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          git config --global user.name "Kapil Gupta"
+          git config --global user.email "kgupta219000@gmail.com"
+          git add .
+          git commit -m "Updating dest.txt"
+          git push
